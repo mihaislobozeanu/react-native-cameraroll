@@ -176,7 +176,8 @@ public class CameraRollModule extends ReactContextBaseJavaModule {
               @Override
               public void onScanCompleted(String path, Uri uri) {
                 if (uri != null) {
-                  mPromise.resolve(uri.toString());
+                  //we need the actual path, the same uri returned by getPhotos
+                  mPromise.resolve("file://" + path);//uri.toString());
                 } else {
                   mPromise.reject(ERROR_UNABLE_TO_SAVE, "Could not add image to gallery");
                 }
